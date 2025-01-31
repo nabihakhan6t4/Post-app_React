@@ -1,41 +1,79 @@
 import React from "react";
-import { Layout, Menu } from "antd";
-import { Link } from "react-router-dom";  // Import Link from react-router-dom
-
+import { Layout, Menu, theme } from "antd";
+import { useNavigate } from "react-router-dom";
 const { Header, Content, Footer } = Layout;
 
-const items = [
-  {
-    key: "/",
-    label: <Link to="/">Home</Link>,  // Wrap the text with Link
-  },
-  {
-    key: "/Login",
-    label: <Link to="/Login">Login</Link>,
-  },
-  {
-    key: "/SignUp",
-    label: <Link to="/SignUp">Signup</Link>,
-  },
-  {
-    key: "/Profile",
-    label: <Link to="/Profile">Profile</Link>,
-  },
-];
+const AppHeader = ({ children }) => {
+  const navigate = useNavigate();
 
-const AppHeader = (props) => {
+  const items = [
+    {
+      key: "/",
+      label: "Home",
+    },
+    {
+      key: "/Login",
+      label: "Login",
+    },
+    {
+      key: "/SignUp",
+      label: "Signup",
+    },
+    {
+      key: "/Profile",
+      label: "Profile",
+    },
+  ];
+
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
   return (
     <Layout>
-      <Header style={{ position: "sticky", top: 0, zIndex: 1, width: "100%" }}>
+      <Header
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <div className="demo-logo" />
-        <Menu theme="dark" mode="horizontal" items={items} />
+        <Menu
+          onClick={(data) => {
+            navigate(data.key);
+          }}
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={["2"]}
+          items={items}
+          style={{
+            flex: 1,
+            minWidth: 0,
+          }}
+        />
       </Header>
-      <Content style={{ padding: "0 48px" }}>
-        <div style={{ padding: 24, minHeight: 380 }}>
-          {props.children}  {/* This will render the changing content */}
+      <Content
+        style={{
+          padding: "0 48px",
+          height: "100vh",
+        }}
+      >
+        <div
+          style={{
+            background: colorBgContainer,
+            minHeight: "100%",
+            padding: 24,
+            borderRadius: borderRadiusLG,
+          }}
+        >
+          {children}
         </div>
       </Content>
-      <Footer style={{ textAlign: "center" }}>
+      <Footer
+        style={{
+          textAlign: "center",
+        }}
+      >
         Ant Design ©{new Date().getFullYear()} Created by Ant UED
       </Footer>
     </Layout>
