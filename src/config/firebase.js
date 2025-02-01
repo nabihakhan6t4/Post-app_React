@@ -1,9 +1,8 @@
-// Firebase import karo
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"; // ✅ Auth import karo
-import { getFirestore } from "firebase/firestore"; // ✅ Firestore import karo
 
-// Tumhara Firebase config
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
   apiKey: "AIzaSyA59Ctx12MyIO8-rJ4XANXPHY1-SClLiQ4",
   authDomain: "post-app-react-bc9d6.firebaseapp.com",
@@ -13,10 +12,8 @@ const firebaseConfig = {
   appId: "1:169435159919:web:709d09f50b375665c99c9a"
 };
 
-// Firebase initialize
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app); // ✅ Yahan initialize ho raha hai
-const db = getFirestore(app); // ✅ Firestore bhi initialize ho raha hai
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-// Export
-export { auth, db };
+export { getAuth,  auth, db, createUserWithEmailAndPassword, signInWithEmailAndPassword };
