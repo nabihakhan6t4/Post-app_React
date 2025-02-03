@@ -1,3 +1,4 @@
+// AppHeader.js
 import React from "react";
 import { Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -7,22 +8,10 @@ const AppHeader = ({ children }) => {
   const navigate = useNavigate();
 
   const items = [
-    {
-      key: "/",
-      label: "Home",
-    },
-    {
-      key: "/Login",
-      label: "Login",
-    },
-    {
-      key: "/SignUp",
-      label: "Signup",
-    },
-    {
-      key: "/Profile",
-      label: "Profile",
-    },
+    { key: "/", label: "Home" },
+    { key: "/Login", label: "Login" },
+    { key: "/SignUp", label: "Signup" },
+    { key: "/Profile", label: "Profile" },
   ];
 
   const {
@@ -30,34 +19,18 @@ const AppHeader = ({ children }) => {
   } = theme.useToken();
 
   return (
-    <Layout>
-      <Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <div className="demo-logo" />
+    <Layout style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <Header style={{ display: "flex", alignItems: "center" }}>
         <Menu
-          onClick={(data) => {
-            navigate(data.key);
-          }}
+          onClick={(data) => navigate(data.key)}
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={["2"]}
+          defaultSelectedKeys={["/"]}
           items={items}
-          style={{
-            flex: 1,
-            minWidth: 0,
-          }}
+          style={{ flex: 1, minWidth: 0 }}
         />
       </Header>
-      <Content
-        style={{
-          padding: "0 48px",
-          height: "100vh",
-        }}
-      >
+      <Content style={{ flexGrow: 1, padding: "0 48px" }}>
         <div
           style={{
             background: colorBgContainer,
@@ -69,13 +42,7 @@ const AppHeader = ({ children }) => {
           {children}
         </div>
       </Content>
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
-      </Footer>
+      <Footer style={{ textAlign: "center" }}>Ant Design ©{new Date().getFullYear()} Created by Ant UED</Footer>
     </Layout>
   );
 };

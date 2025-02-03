@@ -5,8 +5,6 @@ import { UserOutlined } from "@ant-design/icons";
 import "../component/App.css";
 import moment from "moment";
 
-// const { Meta } = Card;
-
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,13 +29,9 @@ const Home = () => {
   return (
     <div className="home-container">
       <h2 className="home-title">Latest Products</h2>
-      <Row gutter={[0, 24]}>
-        {" "}
-        {/* Only vertical gutter, no horizontal gutter */}
+      <Row justify="center" gutter={[0, 24]}>
         {products.map((product) => (
-          <Col xs={24} key={product.id}>
-            {" "}
-            {/* Only one column per row */}
+          <Col xs={24} key={product.id} style={{ display: "flex", justifyContent: "center" }}>
             <Card className="post-card">
               <div className="post-header">
                 <Avatar size={40} icon={<UserOutlined />} />
@@ -50,8 +44,6 @@ const Home = () => {
               </div>
               <Divider />
               <div className="post-image-container">
-                {" "}
-                {/* The wrapper div */}
                 <img
                   alt={product.title}
                   src={product.image}
