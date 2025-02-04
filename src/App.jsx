@@ -1,5 +1,6 @@
+// App.jsx
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom"; // Add Navigate for redirection
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import AppHeader from "./component/AppHeader";
 
 import Home from "./pages/Home";
@@ -9,23 +10,17 @@ import Signup from "./pages/Signup";
 import Post from "./pages/Post";
 
 function App() {
-  const isAuthenticated = false; // Yeh aap apni authentication state ke saath replace kar sakte hain
-
   return (
     <Router>
       <AppHeader>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route 
-            path="/profile" 
-            element={isAuthenticated ? <Profile /> : <Navigate to="/Login" />} 
-          />
-           <Route 
-            path="/profile" 
-            element={isAuthenticated ? <Post /> : <Navigate to="/Login" />} 
-          />
-          <Route path="Signup" element={<Signup />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/post" element={<Post />} /> {/* Added route for Post component */}
+          <Route path="/login" element={<Login />} /> {/* Corrected path to lowercase */}
+          <Route path="/signup" element={<Signup />} /> {/* Corrected path to lowercase */}
+         
+          <Route path="*" element={<Navigate to="/" />} /> {/* Redirect to home for unknown routes */}
         </Routes>
       </AppHeader>
     </Router>

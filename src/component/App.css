@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column; /* Stack posts vertically on smaller screens */
     align-items: center; /* Center posts horizontally */
+    width: 100%; /* Ensure container occupies full width */
 }
 
 .post-card {
@@ -15,6 +16,12 @@
     margin-bottom: 20px;
     width: 90%; /* Occupy most of the screen width */
     max-width: 600px; /* Limit maximum width on larger screens */
+    cursor: pointer;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 768px) { /* Adjust breakpoint as needed */
@@ -28,17 +35,17 @@
         width: 45%; /* Two posts per row */
         margin: 10px; /* Consistent margin around posts */
     }
-    .post-image{
+
+    .post-image {
         max-height: 300px;
     }
 }
 
 @media (min-width: 992px) {
-    .post-card{
+    .post-card {
         width: 30%; /* Three posts per row */
     }
 }
-
 
 .post-header {
     display: flex;
@@ -87,6 +94,8 @@
 .post-title {
     font-size: 1.2rem;
     margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
 }
 
 .post-description {
@@ -105,7 +114,14 @@
     background-color: #eee;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+.post-actions button:hover {
+    background-color: #ddd;
+}
+
+/* Flexbox container for mobile and tablet screens */
 .home-container {
     padding: 20px;
     display: flex;
@@ -137,5 +153,3 @@
         width: 30%; /* Three columns */
     }
 }
-
-/* ... rest of your CSS ... */
