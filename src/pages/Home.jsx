@@ -30,14 +30,28 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      {contextHolder} {/* Place contextHolder for messages */}
+      {contextHolder} 
       <h2 className="home-title">Latest Products</h2>
-      <Row justify="center" gutter={[0, 24]}>
+      <Row 
+        justify="center" 
+        style={{ width: "100%", margin: 0, padding: "0 10px" }} // Extra padding for small screens
+      >
         {products.map((product) => (
-          <Col xs={24} sm={12} md={8} lg={6} key={product.id}> {/* Added responsive grid */}
-            <Card className="post-card">
+          <Col
+            xs={24} // Full width on extra small screens
+            sm={20} // 80% width on small screens
+            md={16} // 65% width on medium screens
+            lg={12} // 50% width on large screens
+            xl={8}  // 33% width on extra large screens
+            key={product.id}
+            style={{ display: "flex", justifyContent: "center", paddingBottom: "16px" }} 
+          >
+            <Card 
+              className="post-card" 
+              style={{ width: "100%", maxWidth: "400px", borderRadius: "10px" }} 
+            >
               <div className="post-header">
-                <Avatar size={40} icon={<UserOutlined />} />
+                <Avatar size={40} icon={<UserOutlined />} className="post-avatar" />
                 <div className="post-info">
                   <span className="post-author">User Name (Example)</span>
                   <span className="post-date">
@@ -46,12 +60,12 @@ const Home = () => {
                 </div>
               </div>
               <Divider />
-              <div className="post-image-container">
+              <div className="post-image-container" style={{ textAlign: "center" }}>
                 <img
                   alt={product.title}
                   src={product.image}
                   className="post-image"
-                  style={{ maxWidth: "100%", height: "auto" }} // Make image responsive
+                  style={{ maxWidth: "100%", height: "auto", display: "block", borderRadius: "8px" }} 
                 />
               </div>
               <div className="post-content">
@@ -59,9 +73,9 @@ const Home = () => {
                 <p className="post-description">
                   {product.description.length > 150
                     ? product.description.substring(0, 150) + "..."
-                    : product.description} {/* Handle short descriptions */}
+                    : product.description}
                 </p>
-                <div className="post-actions">
+                <div className="post-actions" style={{ textAlign: "center" }}>
                   <button>Like</button>
                   <button>Comment</button>
                   <button>Share</button>
